@@ -1,0 +1,61 @@
+{
+  "title": "G9 — THE LAST SAVE",
+  "program": "Software Engineering",
+  "years": "2024–2026",
+  "subtitle": "An Interactive Digital Time Capsule",
+  "tagline": "Some memories never log out.",
+  "rosterNote": "No class roster names were provided in the source archive; update editableRoster below if desired.",
+  "editableRoster": [
+    "Group 9 · Software Engineering Cohort (2024–2026)"
+  ],
+  "commitTimeline": [
+    { "hash": "a902f1c", "tag": "v0.1.0-init", "message": "init: first semester, first shared repository" },
+    { "hash": "b44d81e", "tag": "v1.4.2-crunch", "message": "fix: midnight assignment merges & mamak debugging" },
+    { "hash": "c77e30a", "tag": "v2.8.0-sprint", "message": "feat: surviving presentations & group project builds" },
+    { "hash": "g9f2026", "tag": "v2026.9-release", "message": "release: G9 — The Last Save (Graduation Build)" }
+  ],
+  "blessings": [
+    "做最少的工，领最多的薪水",
+    "当牛马也要当月薪五位数的牛马",
+    "成功找到一份钱多、事少、离家近的工作",
+    "别人做牛马，你做老板",
+    "上班摸鱼，下班数钱",
+    "毕业即退休，跳过打工环节",
+    "老板画的饼全部变成现金",
+    "牛马中的贵族，打工界的王者",
+    "上班带薪拉屎，下班准时消失",
+    "工资涨得比发际线退得快",
+    "不用加班，也能买 Benz",
+    "成功从打工人变成收租人",
+    "老板负责努力，你负责发财",
+    "不做爱情的舔狗，只做金钱的走狗",
+    "每天睡到自然醒，银行转账响不停",
+    "年纪轻轻就被富豪看穿了脆弱",
+    "牛马生涯三个月，财富自由五十年",
+    "工作可以摆烂，工资不能减半",
+    "每次想辞职，老板就给你加薪",
+    "此生不受 KPI 之苦，只享 Bonus 之福",
+    "别人挤 LRT，你坐私人飞机",
+    "会议全部取消，薪水照常发放",
+    "一身班味，满身富贵",
+    "没有公主病，但是有公主命",
+    "事业一路开挂，头发一根不掉",
+    "不用抱老板大腿，因为自己就是大腿",
+    "上班五分钟，带薪休假半年",
+    "成为 G9 第一个脱离牛马籍的人",
+    "毕业后最大的烦恼是钱太多",
+    "G9 全员暴富，从此聚会只谈分红，不谈工资"
+  ],
+  "finalCommit": {
+    "logs": [
+      "> Saving our final chapter...",
+      "> Committing memories...",
+      "> Archive secured.",
+      "> Build successful.",
+      "> Connection permanent."
+    ],
+    "headline": "G9 — THE LAST SAVE",
+    "epilogue1": "Our story is not a game over.",
+    "epilogue2": "Not goodbye. See you again."
+  }
+}
