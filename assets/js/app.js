@@ -87,7 +87,7 @@ class G9ArchiveApp {
     } else if (this.state.admitted) {
       this.renderSystemBoot();
     } else {
-      this.renderAdmissionTerminal();
+      this.renderSystemBoot();
     }
   }
 
@@ -507,183 +507,30 @@ class G9ArchiveApp {
     this.syncControls();
   }
 
-  renderHub(activeMode = 'core') {
-    this.clearScene();
-    this.setChromeVisible(true);
-    this.syncControls();
-
-    const explored = this.state.seenIds.length;
-    const total = this.mediaList.length;
-    const pct = total ? Math.round((explored / total) * 100) : 0;
-    const passUnlocked = explored >= Math.min(3, total);
-
-    $('app').innerHTML = `
-      <section class="tech-shell scene-hub">
-        <div class="hub-hero">
-          <span class="mono-tag">G9 // AN INTERACTIVE DIGITAL TIME CAPSULE</span>
-          <h1>THE LAST SAVE<span class="accent-dot">.</span></h1>
-          <p class="subtitle">Software Engineering · 2024–2026 · Our story is not a game over.</p>
-        </div>
-
-        <div class="hud-progress-panel">
-          <div class="hud-row">
-            <span class="mono-tag">MEMORY EXPLORATION PROGRESS</span>
-            <strong class="mono-tag" id="archive-progress-count">${explored} / ${total} EXPLORED</strong>
-          </div>
-          <div class="hud-track"><span id="archive-progress-bar" style="width:${pct}%"></span></div>
-          <div class="hud-foot-row">
-            <span class="muted" id="archive-complete-tag">${explored >= total ? 'ARCHIVE COMPLETE · ALL MEMORIES RECOVERED' : `${total - explored} memories awaiting discovery`}</span>
-            <button type="button" class="btn-tech-sm" id="random-unseen-btn">Random Unexplored Memory</button>
-          </div>
-        </div>
-
-        <div class="archive-mode-tabs" role="tablist" aria-label="Archive exploration modes">
-          <button type="button" class="mode-tab ${activeMode === 'core' ? 'is-active' : ''}" data-mode="core">Memory Core</button>
-          <button type="button" class="mode-tab ${activeMode === 'tunnel' ? 'is-active' : ''}" data-mode="tunnel">Memory Tunnel</button>
-          <button type="button" class="mode-tab ${activeMode === 'field' ? 'is-active' : ''}" data-mode="field">Spatial Field</button>
-          <button type="button" class="mode-tab ${activeMode === 'cascade' ? 'is-active' : ''}" data-mode="cascade">Memory Cascade</button>
-        </div>
-
-        <div class="archive-viewport" id="archive-viewport"></div>
-
-        <div class="se-language-strip">
-          <pre class="code-card"><code>const G9 = {
-  status: "Graduated",
-  memories: "Permanent",
-  assignments: "Completed",
-  friendship: Infinity
-};
-save(G9);</code></pre>
-          <div class="commit-timeline-card">
-            <span class="mono-tag">GIT COMMIT TIMELINE // 2024–2026</span>
-            <ul>
-              ${this.config.commitTimeline.map((c) => `<li><code>${c.hash}</code> <span>${c.message}</span></li>`).join('')}
-            </ul>
-          </div>
-        </div>
-
-        <div class="modules-grid">
-          <button type="button" class="module-tile" id="mod-destiny">
-            <span class="mono-tag">01 // PROTOCOL</span>
-            <h3>毕业牛马命运分配局</h3>
-            <p class="muted">3D Loot Cube · 30 non-repeating graduate blessings + PNG card.</p>
-          </button>
-          <button type="button" class="module-tile" id="mod-console">
-            <span class="mono-tag">02 // TERMINAL</span>
-            <h3>Developer Console</h3>
-            <p class="muted">Interactive G9 CLI supporting debug, salary, exam, mamak, sudo & more.</p>
-          </button>
-          <button type="button" class="module-tile" id="mod-pass">
-            <span class="mono-tag">03 // CREDENTIAL</span>
-            <h3>Graduation Pass</h3>
-            <p class="muted">${passUnlocked ? 'Unlocked · Titanium holographic pass + PNG export.' : `Explore ${Math.max(0, 3 - explored)} more memories to unlock.`}</p>
-          </button>
-          <button type="button" class="module-tile" id="mod-cinema">
-            <span class="mono-tag">04 // PLAYBACK</span>
-            <h3>Cinematic Memory Mode</h3>
-            <p class="muted">Fullscreen Ken Burns memory reel across the unified G9 archive.</p>
-          </button>
-          <button type="button" class="module-tile" id="mod-credits">
-            <span class="mono-tag">05 // CREDITS</span>
-            <h3>End Credits</h3>
-            <p class="muted">Software Engineering 2024–2026 rolling credits with memory plates.</p>
-          </button>
-          <button type="button" class="module-tile module-highlight" id="mod-final-commit">
-            <span class="mono-tag">06 // FINAL SAVE</span>
-            <h3>Final Commit</h3>
-            <p class="muted">Execute the final graduation commit ritual & export keepsake PNG.</p>
-          </button>
-        </div>
-
-        <div class="signal-easter-panel">
-          <span class="mono-tag">HIDDEN SIGNAL NODE</span>
-          <p class="muted">Tap the G9 signal nine times to decode the hidden transmission.</p>
-          <button type="button" class="signal-btn" id="g9-signal-btn" aria-label="G9 Signal node">
-            ${SVG_ICONS.signal}
-            <span id="signal-counter-txt">${this.state.signalTaps} / 9</span>
-          </button>
-        </div>
-      </section>
-    `;
-
-    const openRandomUnseen = () => {
-      const seenSet = new Set(this.state.seenIds);
-      const unseen = this.mediaList.filter((m) => !seenSet.has(m.id));
-      const pool = unseen.length ? unseen : this.mediaList;
-      const pick = pool[Math.floor(Math.random() * pool.length)];
-      this.audio.playDataUnlock();
-      this.openMediaModal(pick);
-    };
-
-    $('random-unseen-btn').addEventListener('click', openRandomUnseen);
-
-    document.querySelectorAll('.mode-tab').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        this.audio.playScan(660, 0.14);
-        this.renderHub(btn.dataset.mode);
-      });
-    });
-
-    const viewport = $('archive-viewport');
-    const seenSet = new Set(this.state.seenIds);
-
-    if (activeMode === 'core') {
-      viewport.innerHTML = `
-        <div class="core-mode-box">
-          <div id="hub-core-mount"></div>
-          <p class="muted">Drag to rotate the G9 Processor Cube · Tap core to release an unexplored memory · Long-press for system override</p>
-        </div>
-      `;
-      const ctrl = mountProcessorCore($('hub-core-mount'), {
-        interactive: true,
-        onTapCore: openRandomUnseen,
-        onLongPressCore: () => {
-          this.triggerEgg(
-            'core-hold',
-            'CORE OVERRIDE // 0xG9',
-            'Deep diagnostic confirmed: Zero regrets, infinite late-night debugging memories preserved.'
-          );
-        }
-      });
-      this.activeCleanup.push(() => ctrl.destroy());
-    } else if (activeMode === 'tunnel') {
-      const ctrl = mountMemoryTunnel(viewport, this.mediaList, seenSet, {
-        onSelectMedia: (item) => {
-          this.audio.playScan(780, 0.15);
-          this.openMediaModal(item);
-        }
-      });
-      this.activeCleanup.push(() => ctrl.destroy());
-    } else if (activeMode === 'field') {
-      this.mountSpatialField(viewport);
-    } else {
-      this.mountMemoryCascade(viewport);
-    }
-
-    // Modules
-    $('mod-destiny').addEventListener('click', () => this.renderDestinyProtocol());
-    $('mod-console').addEventListener('click', () => this.renderDeveloperConsole());
-    $('mod-pass').addEventListener('click', () => this.renderGraduationPass());
-    $('mod-cinema').addEventListener('click', () => this.renderCinematicMode());
-    $('mod-credits').addEventListener('click', () => this.renderEndCredits());
-    $('mod-final-commit').addEventListener('click', () => this.renderFinalCommit());
-
-    // 9-Tap Signal Easter Egg
-    $('g9-signal-btn').addEventListener('click', () => {
-      this.state.signalTaps++;
-      this.saveState();
-      this.audio.playTone(440 + this.state.signalTaps * 55, 0.12, 'triangle', 0.025);
-      $('signal-counter-txt').textContent = `${Math.min(this.state.signalTaps, 9)} / 9`;
-      if (this.state.signalTaps >= 9) {
-        this.triggerEgg(
-          'signal-9',
-          'SIGNAL DECODED // G9 FOREVER',
-          'Nine harmonic pulses received: "ERROR 404: Exams not found. Connection remains active."'
-        );
-      }
-    });
+  renderHub() {
+    this.clearScene(); this.setChromeVisible(true); this.syncControls();
+    $('app').innerHTML = `<section class="tech-shell final-hub"><div class="hub-hero"><span class="mono-tag">G9 // GRADUATION BUILD 2026</span><h1>THE LAST SAVE<span class="accent-dot">.</span></h1><p class="subtitle">Software Engineering · 2024–2026</p></div><div class="hud-progress-panel"><div class="hud-row"><span class="mono-tag">ARCHIVE RECOVERY</span><strong id="archive-progress-count" class="mono-tag">${this.state.seenIds.length} / ${this.mediaList.length} EXPLORED</strong></div><div class="hud-track"><span id="archive-progress-bar" style="width:${100*this.state.seenIds.length/Math.max(1,this.mediaList.length)}%"></span></div><span id="archive-complete-tag" class="muted">Some memories never log out.</span></div><div class="g9-node-map"><svg viewBox="0 0 360 350" preserveAspectRatio="none" aria-hidden="true"><path d="M88 80L180 175L272 80M180 175L88 280M180 175L272 280" stroke="#8078df" stroke-width="2" fill="none"/><circle cx="180" cy="175" r="51" stroke="#52668d" fill="none"/><circle cx="180" cy="175" r="63" stroke="#455475" stroke-dasharray="3 7" fill="none"/></svg><div class="map-core">G9<small>ONLINE</small></div><button class="map-node n1" id="mod-archive"><i>01</i><strong>Memory Archive</strong><small>RECOVER DATA</small></button><button class="map-node n2" id="mod-destiny"><i>02</i><strong>毕业牛马命运分配局</strong><small>DESTINY PROTOCOL</small></button><button class="map-node n3" id="mod-console"><i>03</i><strong>Secret Terminal</strong><small>EXECUTE COMMAND</small></button><button class="map-node n4" id="mod-final-commit"><i>04</i><strong>The Final Save</strong><small>FINAL COMMIT</small></button></div><button class="btn-tech-sm" id="g9-signal-btn">G9 SIGNAL // <span id="signal-counter-txt">${Math.min(this.state.signalTaps,9)}</span></button></section>`;
+    $('mod-archive').onclick=()=>this.renderFreeArchive();
+    $('mod-destiny').onclick=()=>this.renderDestinyProtocol();
+    $('mod-console').onclick=()=>this.renderDeveloperConsole();
+    $('mod-final-commit').onclick=()=>this.renderFinalCommit();
+    $('g9-signal-btn').onclick=()=>{this.state.signalTaps++;this.saveState();$('signal-counter-txt').textContent=Math.min(this.state.signalTaps,9);if(this.state.signalTaps>=9)this.triggerEgg('signal-9','SIGNAL DECODED','ERROR 404: Exams not found. Connection remains active.')};
   }
-
+  renderFreeArchive() {
+    this.clearScene();this.setChromeVisible(true);
+    $('app').innerHTML=`<section class="tech-shell"><span class="mono-tag">G9 // MEMORY ARCHIVE</span><h1>Memory Space</h1><p class="muted">Drag freely in any direction · Tap to recover a memory</p><div id="free-field" class="free-field"><div id="free-layer"></div></div><div class="action-row"><button class="btn-tech-outline" id="all-data">View all memories</button><button class="btn-tech-outline" id="back-data">Return to hub</button></div><div id="all-data-grid" class="all-data-grid hidden"></div></section>`;
+    const field=$('free-field'),layer=$('free-layer'),list=this.mediaList;
+    let x=0,y=0,px=0,py=0,vx=0,vy=0,t=0,drag=false,moved=false,raf=0;
+    const mod=(v,m)=>((v%m)+m)%m;
+    const cards=list.map((m,i)=>{let el=document.createElement('button');el.className='data-memory';el.innerHTML=`<img src="${resolveMediaThumb(m)}" alt="${m.label}" loading="lazy"><span>${m.label} · ${m.type==='video'?'▶ VIDEO':'PHOTO'}</span>`;el.onclick=()=>{if(!moved)this.openMediaModal(m)};layer.append(el);return el});
+    const draw=()=>{const w=field.clientWidth,h=field.clientHeight,cell=145,W=cell*6,H=cell*4;cards.forEach((el,i)=>{let a=mod((i%6)*cell+Math.sin(i*4.3)*23+x+W/2,W)-W/2+w/2,b=mod(Math.floor(i/6)*cell+Math.cos(i*3.7)*22+y+H/2,H)-H/2+h/2,scale=.82+(i%5)*.055;el.style.transform=`translate3d(${a}px,${b}px,0) translate(-50%,-50%) rotate(${Math.sin(i*2.1)*7}deg) scale(${scale})`;el.style.visibility=a<-90||a>w+90||b<-90||b>h+90?'hidden':'visible'})};
+    field.onpointerdown=e=>{cancelAnimationFrame(raf);drag=true;moved=false;px=e.clientX;py=e.clientY;t=performance.now();vx=vy=0};
+    field.onpointermove=e=>{if(!drag)return;let dx=e.clientX-px,dy=e.clientY-py,now=performance.now();if(Math.abs(dx)+Math.abs(dy)>3)moved=true;if(moved){field.setPointerCapture(e.pointerId);x+=dx;y+=dy;vx=dx/Math.max(10,now-t);vy=dy/Math.max(10,now-t);draw()}px=e.clientX;py=e.clientY;t=now};
+    const release=()=>{drag=false;if(!moved)return;let prev=performance.now();const glide=now=>{let dt=Math.min(32,now-prev);prev=now;vx*=.91;vy*=.91;x+=vx*dt;y+=vy*dt;draw();if(Math.hypot(vx,vy)>.03&&field.isConnected)raf=requestAnimationFrame(glide)};if(!isReducedMotion())raf=requestAnimationFrame(glide);setTimeout(()=>moved=false,100)};
+    field.onpointerup=release;field.onpointercancel=release;field.onwheel=e=>{e.preventDefault();x-=e.deltaX;y-=e.deltaY;draw()};
+    this.activeCleanup.push(()=>cancelAnimationFrame(raf));draw();
+    $('all-data').onclick=()=>{let grid=$('all-data-grid');grid.classList.toggle('hidden');if(!grid.children.length)list.forEach(m=>{let el=document.createElement('button');el.className='data-grid-card';el.innerHTML=`<img loading="lazy" src="${resolveMediaThumb(m)}" alt="${m.label}"><span>${m.label} ${m.type==='video'?'▶':''}</span>`;el.onclick=()=>this.openMediaModal(m);grid.append(el)});if(!grid.classList.contains('hidden'))grid.scrollIntoView({behavior:'smooth'})};$('back-data').onclick=()=>this.renderHub();
+  }
   /* ---------------- SPATIAL MEMORY FIELD (3D PERSPECTIVE CAROUSEL) ---------------- */
   mountSpatialField(container) {
     container.innerHTML = `
