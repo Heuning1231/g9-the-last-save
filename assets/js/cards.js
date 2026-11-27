@@ -131,7 +131,7 @@ export function exportG9BlessingPNG(blessing, drawIndex, total = 30) {
   text('STATUS: DESTINY ASSIGNED',131,942,'500 23px monospace','#8bd9cf');
   line(95,1030,985,1030,'#657ba4');text('SOFTWARE ENGINEERING',96,1086,'600 27px monospace','#dce8f4');text('2024 — 2026',96,1131,'500 25px monospace','#a6b5c8');
   // Decorative data strip, not a scannable code.
-  for(let i=0,x=720;i<47;i++){let bw=2+(i*7%5);rect(x,1060,bw,77,'#a6b5c8');x+=bw+3}
+  for(let i=0,x=730;i<35;i++){let bw=2+(i*7%5);rect(x,1060,bw,77,'#a6b5c8');x+=bw+3}
   text('Some memories never log out.',w/2,1235,'500 27px sans-serif','#c6d4ea','center');
   downloadCanvas(canvas,'G9-Destiny-Certificate-'+String(drawIndex).padStart(2,'0')+'.png');
 }
