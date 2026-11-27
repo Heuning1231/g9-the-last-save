@@ -8,7 +8,7 @@ import {
   exportG9PassPNG,
   exportG9BlessingPNG,
   exportFinalCommitPNG
-} from './cards.js';
+} from './cards.js?v=destiny2';
 import {
   TechStarfield,
   mountProcessorCore,
