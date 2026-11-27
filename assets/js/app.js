@@ -8,7 +8,7 @@ import {
   exportG9PassPNG,
   exportG9BlessingPNG,
   exportFinalCommitPNG
-} from './cards.js?v=destiny2';
+} from './cards.js?v=destiny3';
 import {
   TechStarfield,
   mountProcessorCore,
@@ -695,6 +695,8 @@ class G9ArchiveApp {
     document.querySelector('.back-hub-btn').addEventListener('click', () => this.renderHub('core'));
 
     let drawing = false;
+    let drawTimer = null;
+    this.activeCleanup.push(() => clearTimeout(drawTimer));
     $('draw-loot-btn').addEventListener('click', () => {
       if (drawing) return;
       const pool = wishes.filter((w) => !this.state.drawnBlessings.includes(w));
@@ -713,7 +715,7 @@ class G9ArchiveApp {
       crypto.getRandomValues(rand);
       const picked = pool[rand[0] % pool.length];
 
-      setTimeout(() => {
+      drawTimer = setTimeout(() => {
         this.state.drawnBlessings.push(picked);
         this.state.blessingHistory.push(picked);
         this.saveState();
@@ -724,10 +726,14 @@ class G9ArchiveApp {
     });
 
     $('reset-loot-btn').addEventListener('click', () => {
+      clearTimeout(drawTimer);
+      drawing = false;
       this.state.drawnBlessings = [];
+      this.state.blessingHistory = [];
       this.saveState();
       this.audio.playScan(520, 0.16);
       this.renderDestinyProtocol();
+      $('loot-output').textContent = '抽奖池已重置，30条命运等待解锁。';
     });
 
     $('export-loot-png').addEventListener('click', () => {
