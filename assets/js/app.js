@@ -8,7 +8,7 @@ import {
   exportG9PassPNG,
   exportG9BlessingPNG,
   exportFinalCommitPNG
-} from './cards.js';
+} from './cards.js?v=destiny3';
 import {
   TechStarfield,
   mountProcessorCore,
@@ -16,6 +16,11 @@ import {
   isReducedMotion
 } from './scenes3d.js';
 
+
+// Mount the exact matching scene CSS from the same module, independent of cached HTML.
+const sceneStyle=document.createElement('style');sceneStyle.id='g9-scene-style';sceneStyle.textContent="\n/* Last Save final hub and open memory field */\n.final-hub{max-width:640px;margin:0 auto}.g9-node-map{position:relative;width:min(100%,480px);height:350px;margin:12px auto 20px;isolation:isolate;background:radial-gradient(ellipse at center,#6960ca23,transparent 70%)}.g9-node-map>svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 0 8px #8178ee88);pointer-events:none}.map-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-5deg);width:90px;height:90px;display:grid;place-content:center;border:1px solid #a1b7e6;background:linear-gradient(145deg,#62789e,#18263f 40%,#242047);box-shadow:0 0 40px #7972ed55,inset 0 0 14px #c0d2f229;font:bold 29px monospace;color:#f2f5ff;clip-path:polygon(16% 0,84% 0,100% 16%,100% 84%,84% 100%,16% 100%,0 84%,0 16%)}.map-core small{font:9px monospace;color:#92e0d3;letter-spacing:.15em}.map-node{position:absolute;transform:translate(-50%,-50%);width:43%;max-width:170px;min-height:105px;padding:10px 5px;border:1px solid #8799cd88;clip-path:polygon(8% 0,92% 0,100% 12%,100% 88%,92% 100%,8% 100%,0 88%,0 12%);background:linear-gradient(135deg,#263c5a,#181b36);color:#e7efff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;box-shadow:inset 0 0 20px #8a85ff22}.map-node i{font:10px monospace;color:#ac9bff}.map-node strong{font-size:14px;line-height:1.25}.map-node small{font:8px monospace;color:#b6c8e5;letter-spacing:.06em}.map-node:hover,.map-node:focus-visible{background:linear-gradient(135deg,#35476d,#443779);outline:2px solid #a897ff}.map-node.n1{left:24%;top:23%}.map-node.n2{left:76%;top:23%}.map-node.n3{left:24%;top:80%}.map-node.n4{left:76%;top:80%}.free-field{position:relative;height:clamp(330px,58svh,560px);overflow:hidden;touch-action:none;cursor:grab;user-select:none;background:radial-gradient(ellipse at center,#35326655,transparent 75%),linear-gradient(#5c77b018 1px,transparent 1px),linear-gradient(90deg,#5c77b018 1px,transparent 1px),#0c1427;background-size:auto,40px 40px,40px 40px;border:1px solid #51688c;border-radius:12px;box-shadow:inset 0 0 45px #040813}.free-field:active{cursor:grabbing}.free-field #free-layer{position:absolute;inset:0}.data-memory{position:absolute;left:0;top:0;width:132px;padding:5px 5px 9px;background:linear-gradient(145deg,#324561,#121e35);border:1px solid #91abd0a0;box-shadow:0 12px 22px #030712a0,0 0 12px #8e7ee533;will-change:transform;color:#e2edff;cursor:pointer}.data-memory img{width:100%;aspect-ratio:1.12;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}.data-memory span,.data-grid-card span{display:block;font:9px monospace;padding-top:6px;letter-spacing:.05em}.all-data-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}.all-data-grid.hidden{display:none}.data-grid-card{padding:4px;background:#17243c;border:1px solid #55678b;color:#e2edff}.data-grid-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}@media(max-width:380px){.g9-node-map{height:300px}.map-node{min-height:89px}.map-node strong{font-size:12px}.map-core{width:70px;height:70px;font-size:22px}}\n.g9-node-map{height:clamp(300px,47svh,400px);max-width:440px}.g9-node-map .map-node{position:absolute;display:flex;font-family:system-ui,sans-serif;font-size:14px;line-height:1.25;min-height:98px;padding:12px 6px;z-index:2;clip-path:none;border-radius:12px;background:linear-gradient(145deg,#334866,#151d32 65%,#27234c);box-shadow:0 8px 25px #05081399,inset 0 1px #a6b5c844,0 0 16px #8275ed33}.map-node strong{font-size:clamp(13px,3.6vw,17px)}.g9-node-map .map-core{z-index:1}.g9-node-map>svg{z-index:0}.final-hub .hub-hero{padding-top:12px}.final-hub .hud-progress-panel{margin-bottom:10px}.g9-node-map .map-node:active{filter:brightness(1.3)}.map-node small{font-size:9px}.data-memory{font-family:monospace}\n\n/* G9 technical media stream */\n.stream-shell{width:min(100%,860px);margin:auto;box-sizing:border-box;padding-inline:clamp(12px,3vw,28px)}.stream-heading{text-align:center;margin:14px 0 18px}.stream-heading h1{font-size:clamp(30px,6vw,52px);margin:6px 0}.stream-console{padding:10px;border:1px solid #526b99;border-radius:10px;background:linear-gradient(145deg,#202f48,#0b1324 55%,#1d1c38);box-shadow:0 16px 50px #0005,0 0 25px #7770ea17}.stream-status,.stream-rail-heading{display:flex;justify-content:space-between;gap:8px;font:10px/1.5 monospace;letter-spacing:.08em;color:#a7bde0;padding:6px 3px}.stream-status span:first-child{color:#8ce0d8}.stream-screen{position:relative;display:grid;place-items:center;height:clamp(230px,43svh,440px);overflow:hidden;background:repeating-linear-gradient(0deg,#93a9e009 0 1px,transparent 1px 20px),radial-gradient(ellipse,#263452,#070c17 80%);border:1px solid #3c537b;cursor:pointer;touch-action:pan-y}.stream-screen>img{max-width:100%;max-height:100%;width:100%;height:100%;min-height:0;object-fit:contain;display:block}.stream-corner{position:absolute;width:22px;height:22px;border:2px solid #acbfff;pointer-events:none}.stream-corner.tl{top:7px;left:7px;border-right:0;border-bottom:0}.stream-corner.tr{top:7px;right:7px;border-left:0;border-bottom:0}.stream-corner.bl{bottom:7px;left:7px;border-top:0;border-right:0}.stream-corner.br{bottom:7px;right:7px;border-top:0;border-left:0}.stream-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;display:grid;place-items:center;border:1px solid #b4aaff;border-radius:50%;background:#0c1429cc;box-shadow:0 0 25px #9a86ff88;color:#ebe8ff;font-size:21px}.stream-scan{position:absolute;inset:0;pointer-events:none;background:linear-gradient(transparent 47%,#a7d8ff88 50%,transparent 53%);transform:translateY(-100%)}.scanning .stream-scan{animation:streamSweep .65s ease-out forwards}@keyframes streamSweep{to{transform:translateY(100%)}}.scanning>img{animation:recordReveal .35s ease-out}@keyframes recordReveal{from{opacity:.3;filter:brightness(1.6)}to{opacity:1;filter:none}}.stream-info,.stream-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 3px}.stream-info strong,.stream-info small{display:block;font-family:monospace}.stream-info small{font-size:10px;color:#9cb0ce;margin-top:4px}.stream-nav{border-top:1px solid #43577655;padding-bottom:2px;font:12px monospace}.stream-nav button{font-size:11px;min-width:80px}.stream-rail-heading{margin-top:20px}.stream-rail{position:relative;display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x proximity;padding:10px 3px 16px;scrollbar-color:#7266c8 #111d30;overscroll-behavior-inline:contain}.stream-card{flex:0 0 100px;min-width:0;scroll-snap-align:center;border:1px solid #465a80;background:#111d30;color:#b8c7e0;padding:4px;border-radius:5px;opacity:.65;transition:opacity .2s,border-color .2s,transform .2s}.stream-card.active{opacity:1;border-color:#af9cff;box-shadow:0 0 12px #9178ef66;transform:translateY(-4px)}.stream-card img{display:block;width:100%;height:68px;object-fit:cover}.stream-card span{display:block;padding:7px 2px 3px;font:10px monospace;white-space:nowrap}.stream-shell .action-row{margin-top:14px}.stream-shell .all-data-grid{grid-template-columns:repeat(auto-fit,minmax(90px,1fr))}.stream-shell .data-grid-card img{aspect-ratio:1.3}.g9-modal-box{animation:recordReveal .3s ease-out}.stream-shell button:focus-visible{outline:2px solid #b3a8ff;outline-offset:2px}@media(max-width:420px){.stream-status,.stream-rail-heading{font-size:9px;letter-spacing:0}.stream-info .btn-tech-primary{font-size:12px;padding:10px}.stream-card{flex-basis:85px}.stream-card img{height:58px}}\n\n";document.head.appendChild(sceneStyle);
+sceneStyle.textContent += ".secret-signal{display:flex;flex-direction:column;align-items:center;gap:9px;width:min(100%,340px);margin:24px auto;padding:19px 12px;border:1px dashed #8272c3;border-radius:12px;background:radial-gradient(ellipse at center,#322750,#10192b 75%);color:#e0d9ff;cursor:pointer;font-family:monospace;box-shadow:0 0 20px #9278ed18}.secret-signal .signal-alert{font-size:10px;letter-spacing:1.5px;color:#b8a3ff;animation:signalBlink 2s ease-in-out infinite}.secret-signal .signal-emblem{display:grid;place-items:center;width:48px;height:48px;border:1px solid #ad98ff;border-radius:12px;background:#282240;font-size:30px;animation:signalPulse 2s ease-in-out infinite}.secret-signal strong{font-size:14px}.signal-segments{display:flex;gap:5px}.signal-segments i{display:block;width:17px;height:5px;border-radius:2px;background:#34354f}.signal-segments i.lit{background:#b09aff;box-shadow:0 0 8px #ad98ff}.signal-count,.secret-signal small{font-size:10px;color:#a6b5c8}.secret-signal:active{filter:brightness(1.4)}@keyframes signalBlink{50%{opacity:.55}}@keyframes signalPulse{50%{box-shadow:0 0 23px #9278ed88;transform:scale(1.06)}}";
+sceneStyle.textContent += ".g9-node-map{background:radial-gradient(ellipse at center,#6654bd38,transparent 70%),linear-gradient(#7193d00b 1px,transparent 1px),linear-gradient(90deg,#7193d00b 1px,transparent 1px);background-size:auto,26px 26px,26px 26px}.g9-node-map .data-pulse{stroke:#c4b6ff;stroke-width:2.5;stroke-dasharray:9 125;animation:g9DataFlow 2.7s linear infinite;filter:drop-shadow(0 0 4px #b3a0ff)}.g9-node-map .data-pulse:nth-of-type(2){animation-delay:-.7s}.g9-node-map .data-pulse:nth-of-type(3){animation-delay:-1.4s}.g9-node-map .data-pulse:nth-of-type(4){animation-delay:-2.1s}.g9-orbit{transform-origin:180px 175px;animation:g9Orbit 15s linear infinite}.g9-orbit.inner{animation-direction:reverse;animation-duration:9s}.g9-node-map .map-core{animation:g9CorePulse 3s ease-in-out infinite;transform-style:preserve-3d}.g9-node-map .map-node{animation:g9NodeEnter .65s cubic-bezier(.2,.8,.2,1) both;transition:filter .2s,box-shadow .2s,border-color .2s}.g9-node-map .n2{animation-delay:.12s}.g9-node-map .n3{animation-delay:.24s}.g9-node-map .n4{animation-delay:.36s}.g9-node-map .map-node:hover,.g9-node-map .map-node.is-transmitting{border-color:#d1c6ff;box-shadow:0 0 28px #9c87ff88,inset 0 0 20px #9a86ff33;filter:brightness(1.2)}.g9-node-map.is-transmitting .data-pulse{animation-duration:.45s}.g9-node-map.is-transmitting .map-core{filter:brightness(1.5)}.g9-scene-enter{animation:g9SceneEnter .42s ease-out both}@keyframes g9DataFlow{to{stroke-dashoffset:-134}}@keyframes g9Orbit{to{transform:rotate(360deg)}}@keyframes g9CorePulse{0%,100%{transform:translate(-50%,-50%) rotate(-5deg);filter:drop-shadow(0 0 8px #9278ed66)}50%{transform:translate(-50%,-50%) rotate(5deg) scale(1.04);filter:drop-shadow(0 0 20px #b2a0ffaa)}}@keyframes g9NodeEnter{from{opacity:0;transform:translate(-50%,-44%) scale(.88)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}@keyframes g9SceneEnter{from{opacity:.2;filter:brightness(1.35);transform:translateY(5px)}to{opacity:1;filter:none;transform:none}}@media(prefers-reduced-motion:reduce){.g9-node-map *,.g9-scene-enter{animation:none!important}}";
 const $ = (id) => document.getElementById(id);
 
 const SVG_ICONS = {
@@ -87,7 +92,7 @@ class G9ArchiveApp {
     } else if (this.state.admitted) {
       this.renderSystemBoot();
     } else {
-      this.renderAdmissionTerminal();
+      this.renderSystemBoot();
     }
   }
 
@@ -507,183 +512,29 @@ class G9ArchiveApp {
     this.syncControls();
   }
 
-  renderHub(activeMode = 'core') {
-    this.clearScene();
-    this.setChromeVisible(true);
-    this.syncControls();
-
-    const explored = this.state.seenIds.length;
-    const total = this.mediaList.length;
-    const pct = total ? Math.round((explored / total) * 100) : 0;
-    const passUnlocked = explored >= Math.min(3, total);
-
-    $('app').innerHTML = `
-      <section class="tech-shell scene-hub">
-        <div class="hub-hero">
-          <span class="mono-tag">G9 // AN INTERACTIVE DIGITAL TIME CAPSULE</span>
-          <h1>THE LAST SAVE<span class="accent-dot">.</span></h1>
-          <p class="subtitle">Software Engineering · 2024–2026 · Our story is not a game over.</p>
-        </div>
-
-        <div class="hud-progress-panel">
-          <div class="hud-row">
-            <span class="mono-tag">MEMORY EXPLORATION PROGRESS</span>
-            <strong class="mono-tag" id="archive-progress-count">${explored} / ${total} EXPLORED</strong>
-          </div>
-          <div class="hud-track"><span id="archive-progress-bar" style="width:${pct}%"></span></div>
-          <div class="hud-foot-row">
-            <span class="muted" id="archive-complete-tag">${explored >= total ? 'ARCHIVE COMPLETE · ALL MEMORIES RECOVERED' : `${total - explored} memories awaiting discovery`}</span>
-            <button type="button" class="btn-tech-sm" id="random-unseen-btn">Random Unexplored Memory</button>
-          </div>
-        </div>
-
-        <div class="archive-mode-tabs" role="tablist" aria-label="Archive exploration modes">
-          <button type="button" class="mode-tab ${activeMode === 'core' ? 'is-active' : ''}" data-mode="core">Memory Core</button>
-          <button type="button" class="mode-tab ${activeMode === 'tunnel' ? 'is-active' : ''}" data-mode="tunnel">Memory Tunnel</button>
-          <button type="button" class="mode-tab ${activeMode === 'field' ? 'is-active' : ''}" data-mode="field">Spatial Field</button>
-          <button type="button" class="mode-tab ${activeMode === 'cascade' ? 'is-active' : ''}" data-mode="cascade">Memory Cascade</button>
-        </div>
-
-        <div class="archive-viewport" id="archive-viewport"></div>
-
-        <div class="se-language-strip">
-          <pre class="code-card"><code>const G9 = {
-  status: "Graduated",
-  memories: "Permanent",
-  assignments: "Completed",
-  friendship: Infinity
-};
-save(G9);</code></pre>
-          <div class="commit-timeline-card">
-            <span class="mono-tag">GIT COMMIT TIMELINE // 2024–2026</span>
-            <ul>
-              ${this.config.commitTimeline.map((c) => `<li><code>${c.hash}</code> <span>${c.message}</span></li>`).join('')}
-            </ul>
-          </div>
-        </div>
-
-        <div class="modules-grid">
-          <button type="button" class="module-tile" id="mod-destiny">
-            <span class="mono-tag">01 // PROTOCOL</span>
-            <h3>毕业牛马命运分配局</h3>
-            <p class="muted">3D Loot Cube · 30 non-repeating graduate blessings + PNG card.</p>
-          </button>
-          <button type="button" class="module-tile" id="mod-console">
-            <span class="mono-tag">02 // TERMINAL</span>
-            <h3>Developer Console</h3>
-            <p class="muted">Interactive G9 CLI supporting debug, salary, exam, mamak, sudo & more.</p>
-          </button>
-          <button type="button" class="module-tile" id="mod-pass">
-            <span class="mono-tag">03 // CREDENTIAL</span>
-            <h3>Graduation Pass</h3>
-            <p class="muted">${passUnlocked ? 'Unlocked · Titanium holographic pass + PNG export.' : `Explore ${Math.max(0, 3 - explored)} more memories to unlock.`}</p>
-          </button>
-          <button type="button" class="module-tile" id="mod-cinema">
-            <span class="mono-tag">04 // PLAYBACK</span>
-            <h3>Cinematic Memory Mode</h3>
-            <p class="muted">Fullscreen Ken Burns memory reel across the unified G9 archive.</p>
-          </button>
-          <button type="button" class="module-tile" id="mod-credits">
-            <span class="mono-tag">05 // CREDITS</span>
-            <h3>End Credits</h3>
-            <p class="muted">Software Engineering 2024–2026 rolling credits with memory plates.</p>
-          </button>
-          <button type="button" class="module-tile module-highlight" id="mod-final-commit">
-            <span class="mono-tag">06 // FINAL SAVE</span>
-            <h3>Final Commit</h3>
-            <p class="muted">Execute the final graduation commit ritual & export keepsake PNG.</p>
-          </button>
-        </div>
-
-        <div class="signal-easter-panel">
-          <span class="mono-tag">HIDDEN SIGNAL NODE</span>
-          <p class="muted">Tap the G9 signal nine times to decode the hidden transmission.</p>
-          <button type="button" class="signal-btn" id="g9-signal-btn" aria-label="G9 Signal node">
-            ${SVG_ICONS.signal}
-            <span id="signal-counter-txt">${this.state.signalTaps} / 9</span>
-          </button>
-        </div>
-      </section>
-    `;
-
-    const openRandomUnseen = () => {
-      const seenSet = new Set(this.state.seenIds);
-      const unseen = this.mediaList.filter((m) => !seenSet.has(m.id));
-      const pool = unseen.length ? unseen : this.mediaList;
-      const pick = pool[Math.floor(Math.random() * pool.length)];
-      this.audio.playDataUnlock();
-      this.openMediaModal(pick);
-    };
-
-    $('random-unseen-btn').addEventListener('click', openRandomUnseen);
-
-    document.querySelectorAll('.mode-tab').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        this.audio.playScan(660, 0.14);
-        this.renderHub(btn.dataset.mode);
-      });
-    });
-
-    const viewport = $('archive-viewport');
-    const seenSet = new Set(this.state.seenIds);
-
-    if (activeMode === 'core') {
-      viewport.innerHTML = `
-        <div class="core-mode-box">
-          <div id="hub-core-mount"></div>
-          <p class="muted">Drag to rotate the G9 Processor Cube · Tap core to release an unexplored memory · Long-press for system override</p>
-        </div>
-      `;
-      const ctrl = mountProcessorCore($('hub-core-mount'), {
-        interactive: true,
-        onTapCore: openRandomUnseen,
-        onLongPressCore: () => {
-          this.triggerEgg(
-            'core-hold',
-            'CORE OVERRIDE // 0xG9',
-            'Deep diagnostic confirmed: Zero regrets, infinite late-night debugging memories preserved.'
-          );
-        }
-      });
-      this.activeCleanup.push(() => ctrl.destroy());
-    } else if (activeMode === 'tunnel') {
-      const ctrl = mountMemoryTunnel(viewport, this.mediaList, seenSet, {
-        onSelectMedia: (item) => {
-          this.audio.playScan(780, 0.15);
-          this.openMediaModal(item);
-        }
-      });
-      this.activeCleanup.push(() => ctrl.destroy());
-    } else if (activeMode === 'field') {
-      this.mountSpatialField(viewport);
-    } else {
-      this.mountMemoryCascade(viewport);
-    }
-
-    // Modules
-    $('mod-destiny').addEventListener('click', () => this.renderDestinyProtocol());
-    $('mod-console').addEventListener('click', () => this.renderDeveloperConsole());
-    $('mod-pass').addEventListener('click', () => this.renderGraduationPass());
-    $('mod-cinema').addEventListener('click', () => this.renderCinematicMode());
-    $('mod-credits').addEventListener('click', () => this.renderEndCredits());
-    $('mod-final-commit').addEventListener('click', () => this.renderFinalCommit());
-
-    // 9-Tap Signal Easter Egg
-    $('g9-signal-btn').addEventListener('click', () => {
-      this.state.signalTaps++;
-      this.saveState();
-      this.audio.playTone(440 + this.state.signalTaps * 55, 0.12, 'triangle', 0.025);
-      $('signal-counter-txt').textContent = `${Math.min(this.state.signalTaps, 9)} / 9`;
-      if (this.state.signalTaps >= 9) {
-        this.triggerEgg(
-          'signal-9',
-          'SIGNAL DECODED // G9 FOREVER',
-          'Nine harmonic pulses received: "ERROR 404: Exams not found. Connection remains active."'
-        );
-      }
-    });
+  renderHub() {
+    this.clearScene(); this.setChromeVisible(true); this.syncControls();
+    $('app').innerHTML = `<section class="tech-shell final-hub"><div class="hub-hero"><span class="mono-tag">G9 // GRADUATION BUILD 2026</span><h1>THE LAST SAVE<span class="accent-dot">.</span></h1><p class="subtitle">Software Engineering · 2024–2026</p></div><div class="hud-progress-panel"><div class="hud-row"><span class="mono-tag">ARCHIVE RECOVERY</span><strong id="archive-progress-count" class="mono-tag">${this.state.seenIds.length} / ${this.mediaList.length} EXPLORED</strong></div><div class="hud-track"><span id="archive-progress-bar" style="width:${100*this.state.seenIds.length/Math.max(1,this.mediaList.length)}%"></span></div><span id="archive-complete-tag" class="muted">Some memories never log out.</span></div><div class="g9-node-map"><svg viewBox="0 0 360 350" preserveAspectRatio="none" aria-hidden="true"><path d="M88 80L180 175L272 80M180 175L88 280M180 175L272 280" stroke="#8078df" stroke-width="2" fill="none"/><g fill="none"><path class="data-pulse" d="M180 175L88 80"/><path class="data-pulse" d="M180 175L272 80"/><path class="data-pulse" d="M180 175L88 280"/><path class="data-pulse" d="M180 175L272 280"/></g><circle class="g9-orbit inner" cx="180" cy="175" r="51" stroke="#8ca9db" stroke-dasharray="4 9" fill="none"/><circle class="g9-orbit" cx="180" cy="175" r="63" stroke="#9d88ed" stroke-dasharray="28 8 4 12" fill="none"/></svg><div class="map-core">G9<small>ONLINE</small></div><button class="map-node n1" id="mod-archive"><i>01</i><strong>Memory Archive</strong><small>RECOVER DATA</small></button><button class="map-node n2" id="mod-destiny"><i>02</i><strong>毕业牛马命运分配局</strong><small>DESTINY PROTOCOL</small></button><button class="map-node n3" id="mod-console"><i>03</i><strong>Secret Terminal</strong><small>EXECUTE COMMAND</small></button><button class="map-node n4" id="mod-final-commit"><i>04</i><strong>The Final Save</strong><small>FINAL COMMIT</small></button></div><button class="secret-signal" id="g9-signal-btn" aria-label="Tap to decode hidden signal"><span class="signal-alert">● UNKNOWN SIGNAL DETECTED</span><span class="signal-emblem">◇</span><strong>G9 // SECRET SIGNAL</strong><span class="signal-segments">${Array.from({length:9},(_,i)=>`<i class="${i<Math.min(this.state.signalTaps,9)?'lit':''}"></i>`).join('')}</span><span class="signal-count"><span id="signal-counter-txt">${Math.min(this.state.signalTaps,9)}</span> / 9 SIGNALS DECODED</span><small>Tap to decode the hidden transmission.</small></button></section>`;
+    let switching=false, transitionTimer=null;
+    this.activeCleanup.push(()=>clearTimeout(transitionTimer));
+    const openModule=(id,fn)=>{$(id).onclick=()=>{if(switching)return;switching=true;$(id).classList.add('is-transmitting');document.querySelector('.g9-node-map').classList.add('is-transmitting');transitionTimer=setTimeout(()=>{fn();const section=$('app').firstElementChild;if(section)section.classList.add('g9-scene-enter')},isReducedMotion()?0:320)}};
+    openModule('mod-archive',()=>this.renderFreeArchive());
+    openModule('mod-destiny',()=>this.renderDestinyProtocol());
+    openModule('mod-console',()=>this.renderDeveloperConsole());
+    openModule('mod-final-commit',()=>this.renderFinalCommit());
+    $('g9-signal-btn').onclick=()=>{this.state.signalTaps=Math.min(9,this.state.signalTaps+1);this.saveState();$('signal-counter-txt').textContent=this.state.signalTaps;document.querySelectorAll('.signal-segments i').forEach((el,i)=>el.classList.toggle('lit',i<this.state.signalTaps));if(this.state.signalTaps>=9)this.triggerEgg('signal-9','SIGNAL DECODED','ERROR 404: Exams not found. Connection remains active.')};
   }
-
+  renderFreeArchive() {
+    this.clearScene();this.setChromeVisible(true);
+    const list=this.mediaList;let selected=0;
+    $('app').innerHTML=`<section class="tech-shell stream-shell"><div class="stream-heading"><span class="mono-tag">G9 DATABASE // MEDIA STREAM</span><h1>Memory Archive</h1><p class="muted">24 records · One shared timeline</p></div><div class="stream-console"><div class="stream-status"><span>◈ SIGNAL ACQUIRED</span><span id="stream-index"></span></div><div class="stream-screen" id="stream-screen"></div><div class="stream-info"><div><strong id="stream-label"></strong><small id="stream-type"></small></div><button class="btn-tech-primary" id="stream-open">Open record</button></div><div class="stream-nav"><button class="btn-tech-outline" id="stream-prev">← Previous</button><span id="stream-count"></span><button class="btn-tech-outline" id="stream-next">Next →</button></div></div><div class="stream-rail-heading"><span>DATA CHANNEL // 01–24</span><span>SWIPE TO EXPLORE</span></div><div class="stream-rail" id="stream-rail"></div><div class="action-row"><button class="btn-tech-outline" id="all-data">View all records</button><button class="btn-tech-outline" id="back-data">Return to hub</button></div><div id="all-data-grid" class="all-data-grid hidden"></div></section>`;
+    const rail=$('stream-rail'),screen=$('stream-screen');
+    const cards=list.map((m,i)=>{let el=document.createElement('button');el.className='stream-card';el.innerHTML=`<img src="${resolveMediaThumb(m)}" alt="${m.label}" loading="lazy"><span>${m.label} ${m.type==='video'?'▶':'◇'}</span>`;el.onclick=()=>select(i);rail.append(el);return el});
+    const select=(i,scroll=true)=>{selected=(i+list.length)%list.length;const m=list[selected];screen.innerHTML=`<img src="${m.type==='video'?(m.poster||resolveMediaThumb(m)):resolveMediaFull(m)}" alt="${m.label}"><div class="stream-scan"></div><span class="stream-corner tl"></span><span class="stream-corner tr"></span><span class="stream-corner bl"></span><span class="stream-corner br"></span>${m.type==='video'?'<span class="stream-play">▶</span>':''}`;screen.classList.remove('scanning');void screen.offsetWidth;screen.classList.add('scanning');$('stream-index').textContent='REC // '+String(selected+1).padStart(2,'0');$('stream-label').textContent=m.label;$('stream-type').textContent=m.type==='video'?'MP4 · VIDEO RECORD':'WEBP · IMAGE RECORD';$('stream-count').textContent=(selected+1)+' / '+list.length;cards.forEach((c,j)=>{c.classList.toggle('active',j===selected);c.setAttribute('aria-pressed',String(j===selected))});if(scroll)rail.scrollTo({left:cards[selected].offsetLeft-rail.offsetLeft-(rail.clientWidth-cards[selected].clientWidth)/2,behavior:isReducedMotion()?'auto':'smooth'})};
+    $('stream-prev').onclick=()=>select(selected-1);$('stream-next').onclick=()=>select(selected+1);$('stream-open').onclick=()=>this.openMediaModal(list[selected]);screen.onclick=()=>this.openMediaModal(list[selected]);screen.tabIndex=0;screen.setAttribute('role','button');screen.setAttribute('aria-label','Open selected memory');screen.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();this.openMediaModal(list[selected])}};
+    let startX=0;screen.ontouchstart=e=>startX=e.changedTouches[0].clientX;screen.ontouchend=e=>{let dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>45){e.preventDefault();select(selected+(dx<0?1:-1))}};
+    $('all-data').onclick=()=>{let grid=$('all-data-grid');grid.classList.toggle('hidden');if(!grid.children.length)list.forEach((m,i)=>{let el=document.createElement('button');el.className='data-grid-card';el.innerHTML=`<img loading="lazy" src="${resolveMediaThumb(m)}" alt="${m.label}"><span>${m.label} ${m.type==='video'?'▶':'◇'}</span>`;el.onclick=()=>{select(i);this.openMediaModal(m)};grid.append(el)});if(!grid.classList.contains('hidden'))grid.scrollIntoView({behavior:'smooth'})};$('back-data').onclick=()=>this.renderHub();select(0,false);
+  }
   /* ---------------- SPATIAL MEMORY FIELD (3D PERSPECTIVE CAROUSEL) ---------------- */
   mountSpatialField(container) {
     container.innerHTML = `
@@ -849,6 +700,8 @@ save(G9);</code></pre>
     document.querySelector('.back-hub-btn').addEventListener('click', () => this.renderHub('core'));
 
     let drawing = false;
+    let drawTimer = null;
+    this.activeCleanup.push(() => clearTimeout(drawTimer));
     $('draw-loot-btn').addEventListener('click', () => {
       if (drawing) return;
       const pool = wishes.filter((w) => !this.state.drawnBlessings.includes(w));
@@ -867,7 +720,7 @@ save(G9);</code></pre>
       crypto.getRandomValues(rand);
       const picked = pool[rand[0] % pool.length];
 
-      setTimeout(() => {
+      drawTimer = setTimeout(() => {
         this.state.drawnBlessings.push(picked);
         this.state.blessingHistory.push(picked);
         this.saveState();
@@ -878,10 +731,14 @@ save(G9);</code></pre>
     });
 
     $('reset-loot-btn').addEventListener('click', () => {
+      clearTimeout(drawTimer);
+      drawing = false;
       this.state.drawnBlessings = [];
+      this.state.blessingHistory = [];
       this.saveState();
       this.audio.playScan(520, 0.16);
       this.renderDestinyProtocol();
+      $('loot-output').textContent = '抽奖池已重置，30条命运等待解锁。';
     });
 
     $('export-loot-png').addEventListener('click', () => {
